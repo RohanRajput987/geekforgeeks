@@ -1,4 +1,4 @@
-lass Solution {
+class Solution {
     public int[] singleNum(int[] arr) {
         // Code here
         HashSet <Integer> map=new HashSet<>();
