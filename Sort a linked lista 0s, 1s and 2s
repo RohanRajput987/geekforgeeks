@@ -1,0 +1,42 @@
+class Solution {
+    // Function to sort a linked list of 0s, 1s and 2s.
+    static Node segregate(Node head) {
+        // code here
+        Node dummy0=new Node(-1);
+        Node dummy1=new Node(-1);
+        Node dummy2=new Node(-1);
+        
+        Node temp0=dummy0;
+        Node temp1=dummy1;
+        Node temp2=dummy2;
+        
+        Node currnode=head;
+        
+        while(currnode!=null)
+        {
+            if(currnode.data==0)
+            {
+                temp0.next=currnode;
+                temp0=temp0.next;
+            }
+            else if(currnode.data==1)
+            {
+                temp1.next=currnode;
+                temp1=temp1.next;
+            }
+            else
+            {
+                temp2.next=currnode;
+                temp2=temp2.next;
+            }
+            
+            currnode=currnode.next;
+        }
+        
+         temp0.next = (dummy1.next != null) ? dummy1.next : dummy2.next;
+        temp1.next=dummy2.next;
+        temp2.next=null;
+        return dummy0.next;
+        
+    }
+}
