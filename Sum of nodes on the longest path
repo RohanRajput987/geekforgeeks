@@ -1,0 +1,46 @@
+/*
+class Node {
+    int data;
+    Node left, right;
+
+    public Node(int data){
+        this.data = data;
+    }
+} */
+class Solution {
+    class Result{
+        int len;
+        int sum;
+        
+        Result(int len, int sum){
+            this.len = len;
+            this.sum = sum;
+        }
+    }
+    
+    public Result dfs(Node root, int sum, int len){
+        if(root == null){
+            return new Result(len, sum);
+        }
+        
+        sum += root.data;
+        
+        Result left = dfs(root.left, sum, len+1);
+        Result right = dfs(root.right, sum, len+1);
+        
+        
+        if(left.len > right.len){
+            return left;
+        }else if(left.len < right.len){
+            return right;
+        }else{
+            return (left.sum > right.sum)?left:right;
+        }
+    }
+
+    public int sumOfLongRootToLeafPath(Node root) {
+        Result result = dfs(root, 0, 0);
+        
+        return result.sum;
+    }
+}
