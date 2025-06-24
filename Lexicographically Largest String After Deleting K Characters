@@ -1,0 +1,38 @@
+class Solution {
+  public:
+    string maxSubseq(string& s, int k) {
+        int left = s.size() - k;
+        stack<char>st;
+        string temp;
+        string str;
+        for(int i=0;i<s.size();i++) {
+            if(st.size()==0) {
+                st.push(s[i]);
+                str.push_back(s[i]);
+            } else {
+                if(st.top()>=s[i]) {
+                    if(st.size()<left) {
+                        str.push_back(s[i]);
+                        st.push(s[i]);
+                    }
+                } else {
+                    int removeHowMany = s.size() - i>=left ? st.size() :  s.size()-i+st.size()-left;
+                    while(removeHowMany>0 && (!st.empty()) && st.top()<s[i]) {
+                        st.pop();
+                        str.pop_back();
+                        removeHowMany--;
+                    }
+                    st.push(s[i]);
+                    str.push_back(s[i]);
+                }
+            }
+            // cout << str <<" ";
+        }
+        while(!st.empty()){
+            temp.push_back(st.top());
+            st.pop();
+        }
+        reverse(temp.begin(), temp.end());
+        return temp;
+    }
+};
