@@ -1,0 +1,51 @@
+class Solution {
+    boolean sameFreq(String s) {
+        HashMap<Character,Integer> freq = new HashMap<>();
+        HashMap<Integer,Integer> freq2 = new HashMap<>();
+        
+        for(char ch : s.toCharArray()) {
+            freq.put(ch, freq.getOrDefault(ch, 0) + 1);
+        }
+        
+        for(int i : freq.values()) {
+            freq2.put(i, freq2.getOrDefault(i, 0) + 1);
+        }
+    
+        if(freq2.size() == 1 || freq2.size() == 0) {
+            return true;
+        }
+        
+        if(freq2.size() == 2) {
+            int f1 = 0, f2 = 0;
+            int c1 = 0, c2 = 0;
+            
+            boolean flip = true;
+            for(int f : freq2.keySet()) {
+                if(flip) {
+                    f1 = f;
+                    c1 = freq2.get(f);
+                } else {
+                    f2 = f;
+                    c2 = freq2.get(f);
+                }
+                
+                flip = false;
+            }
+            
+            // CASE 1
+            if(c1==1 && f1==1 || c2==1 && f2==1) {
+                return true;
+            }
+            
+            // CASE 2
+            if ((Math.abs(f1 - f2) == 1) && ((c1 == 1 && f1 > f2) || (c2 == 1 && f2 > f1))) {
+                return true;
+            }
+            
+            return false;
+        }
+        
+        return false;
+        
+    }
+}
