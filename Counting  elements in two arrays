@@ -1,0 +1,27 @@
+class Solution {
+    public static ArrayList<Integer> countLessEq(int a[], int b[]) {
+        // code here
+        ArrayList<Integer>list=new ArrayList<>();
+        Arrays.sort(b);
+        for(int i=0;i<a.length;i++){
+            list.add(helper(a[i], b));
+        }
+        return list;
+    }
+    
+    public static int helper(int key,int b[]){
+        int si=0;
+        int end=b.length-1;
+        int ans=-1;
+        while(si<=end){
+            int mid=si+(end-si)/2;
+            if(b[mid]<=key){
+                ans=mid;
+                si=mid+1;
+            }else{
+                end=mid-1;
+            }
+        }
+        return ans+1;//because 0 indexing 
+    }
+}
