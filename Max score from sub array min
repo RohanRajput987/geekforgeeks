@@ -1,0 +1,15 @@
+class Solution {
+    // Function to find pair with maximum sum
+    public int pairWithMaxSum(int arr[]) {
+        // Your code goes here
+        int prev=arr[0];
+        int n=arr.length;
+        int maxsum=0;
+        for(int i=1;i<n;i++){
+            maxsum=Math.max(maxsum,arr[i]+prev);
+            prev=arr[i];
+        }
+        return maxsum;
+        
+    }
+}
