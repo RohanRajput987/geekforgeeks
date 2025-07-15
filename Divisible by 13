@@ -1,0 +1,7 @@
+import java.math.BigInteger;
+class Solution {
+    public boolean divby13(String s) {
+        BigInteger num = new BigInteger(s);
+        return num.mod(BigInteger.valueOf(13)).equals(BigInteger.ZERO);
+    }
+}
