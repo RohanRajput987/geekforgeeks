@@ -1,7 +1,14 @@
-import java.math.BigInteger;
 class Solution {
     public boolean divby13(String s) {
-        BigInteger num = new BigInteger(s);
-        return num.mod(BigInteger.valueOf(13)).equals(BigInteger.ZERO);
+        int remainder = 0;
+        
+        // Process each digit from left to right
+        for (int i = 0; i < s.length(); i++) {
+            int digit = s.charAt(i) - '0';
+            remainder = (remainder * 10 + digit) % 13;
+        }
+        
+        // If remainder is 0, the number is divisible by 13
+        return remainder == 0;
     }
 }
